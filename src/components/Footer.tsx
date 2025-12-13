@@ -1,31 +1,32 @@
 import { Mail, Phone, MapPin, Linkedin, Instagram, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const footerLinks = {
     produto: [
-      { label: "Recursos", href: "#recursos" },
-      { label: "Preços", href: "#precos" },
-      { label: "Integrações", href: "#" },
-      { label: "API", href: "#" },
+      { label: "Recursos", href: "/recursos" },
+      { label: "Preços", href: "/precos" },
+      { label: "Integrações", href: "/integracoes" },
+      { label: "API", href: "/api" },
     ],
     empresa: [
-      { label: "Sobre nós", href: "#" },
-      { label: "Carreiras", href: "#" },
-      { label: "Blog", href: "#" },
-      { label: "Contato", href: "#contato" },
+      { label: "Sobre nós", href: "/sobre" },
+      { label: "Carreiras", href: "/carreiras" },
+      { label: "Blog", href: "/blog" },
+      { label: "Contato", href: "/contato" },
     ],
     suporte: [
-      { label: "Central de Ajuda", href: "#" },
-      { label: "Documentação", href: "#" },
-      { label: "Status", href: "#" },
-      { label: "Comunidade", href: "#" },
+      { label: "Central de Ajuda", href: "/ajuda" },
+      { label: "Documentação", href: "/documentacao" },
+      { label: "Status", href: "/status" },
+      { label: "Comunidade", href: "/comunidade" },
     ],
     legal: [
-      { label: "Termos de Uso", href: "#" },
-      { label: "Privacidade", href: "#" },
-      { label: "Cookies", href: "#" },
-      { label: "LGPD", href: "#" },
+      { label: "Termos de Uso", href: "/termos" },
+      { label: "Privacidade", href: "/privacidade" },
+      { label: "Cookies", href: "/cookies" },
+      { label: "LGPD", href: "/lgpd" },
     ],
   };
 
@@ -85,9 +86,9 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.produto.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-background/60 hover:text-primary transition-colors duration-300 inline-block">
+                  <Link to={link.href} className="text-sm text-background/60 hover:text-primary transition-colors duration-300 inline-block">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -98,9 +99,9 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.empresa.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-background/60 hover:text-primary transition-colors duration-300 inline-block">
+                  <Link to={link.href} className="text-sm text-background/60 hover:text-primary transition-colors duration-300 inline-block">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -111,9 +112,9 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.suporte.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-background/60 hover:text-primary transition-colors duration-300 inline-block">
+                  <Link to={link.href} className="text-sm text-background/60 hover:text-primary transition-colors duration-300 inline-block">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -124,9 +125,9 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-background/60 hover:text-primary transition-colors duration-300 inline-block">
+                  <Link to={link.href} className="text-sm text-background/60 hover:text-primary transition-colors duration-300 inline-block">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

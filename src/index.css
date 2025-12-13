@@ -556,3 +556,87 @@
   opacity: 0.03;
   pointer-events: none;
 }
+
+/* Parallax Scrolling */
+.parallax-container {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.parallax-layer {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.parallax-back {
+  transform: translateZ(-1px) scale(2);
+}
+
+.parallax-front {
+  transform: translateZ(0);
+}
+
+/* Scroll Snap */
+.scroll-snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.scroll-snap-section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+}
+
+/* Scroll-triggered Animations */
+.scroll-trigger {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-trigger.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-trigger-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-trigger-left.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-trigger-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-trigger-right.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-trigger-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-trigger-scale.in-view {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
