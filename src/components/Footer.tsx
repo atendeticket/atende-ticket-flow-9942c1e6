@@ -1,4 +1,5 @@
-import { MessageSquare, Mail, Phone, MapPin, Linkedin, Instagram, Youtube } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Instagram, Youtube } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const footerLinks = {
@@ -29,36 +30,50 @@ const Footer = () => {
   };
 
   return (
-    <footer id="contato" className="bg-foreground text-background py-16">
-      <div className="container mx-auto px-4">
+    <footer id="contato" className="bg-foreground text-background py-16 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
           {/* Brand Column */}
           <div className="col-span-2">
-            <a href="#" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                <MessageSquare className="w-5 h-5 text-primary-foreground" />
+            <a href="#" className="flex items-center gap-3 mb-4 group">
+              <div className="relative">
+                <div className="absolute inset-0 bg-primary/30 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <img 
+                  src={logo} 
+                  alt="AtendeTicket" 
+                  className="w-10 h-10 rounded-xl relative z-10 transition-transform duration-300 group-hover:scale-110"
+                />
               </div>
               <span className="font-display font-bold text-xl text-background">
                 Atende<span className="text-primary">Ticket</span>
               </span>
             </a>
-            <p className="text-background/60 text-sm mb-6 max-w-xs">
+            <p className="text-background/60 text-sm mb-6 max-w-xs leading-relaxed">
               Plataforma de multiatendimento que centraliza todos os seus canais 
-              em um único lugar.
+              em um único lugar. Simples, rápido e eficiente.
             </p>
 
             {/* Contact Info */}
             <div className="space-y-3">
-              <a href="mailto:contato@atendeticket.com" className="flex items-center gap-2 text-sm text-background/60 hover:text-primary transition-colors">
-                <Mail className="w-4 h-4" />
+              <a href="mailto:contato@atendeticket.com" className="flex items-center gap-3 text-sm text-background/60 hover:text-primary transition-colors duration-300 group">
+                <div className="w-8 h-8 rounded-lg bg-background/5 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                  <Mail className="w-4 h-4" />
+                </div>
                 contato@atendeticket.com
               </a>
-              <a href="tel:+5511999999999" className="flex items-center gap-2 text-sm text-background/60 hover:text-primary transition-colors">
-                <Phone className="w-4 h-4" />
+              <a href="tel:+5511999999999" className="flex items-center gap-3 text-sm text-background/60 hover:text-primary transition-colors duration-300 group">
+                <div className="w-8 h-8 rounded-lg bg-background/5 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                  <Phone className="w-4 h-4" />
+                </div>
                 (11) 99999-9999
               </a>
-              <div className="flex items-center gap-2 text-sm text-background/60">
-                <MapPin className="w-4 h-4" />
+              <div className="flex items-center gap-3 text-sm text-background/60">
+                <div className="w-8 h-8 rounded-lg bg-background/5 flex items-center justify-center">
+                  <MapPin className="w-4 h-4" />
+                </div>
                 São Paulo, Brasil
               </div>
             </div>
@@ -70,7 +85,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.produto.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-background/60 hover:text-primary transition-colors">
+                  <a href={link.href} className="text-sm text-background/60 hover:text-primary transition-colors duration-300 inline-block">
                     {link.label}
                   </a>
                 </li>
@@ -83,7 +98,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.empresa.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-background/60 hover:text-primary transition-colors">
+                  <a href={link.href} className="text-sm text-background/60 hover:text-primary transition-colors duration-300 inline-block">
                     {link.label}
                   </a>
                 </li>
@@ -96,7 +111,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.suporte.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-background/60 hover:text-primary transition-colors">
+                  <a href={link.href} className="text-sm text-background/60 hover:text-primary transition-colors duration-300 inline-block">
                     {link.label}
                   </a>
                 </li>
@@ -109,7 +124,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-background/60 hover:text-primary transition-colors">
+                  <a href={link.href} className="text-sm text-background/60 hover:text-primary transition-colors duration-300 inline-block">
                     {link.label}
                   </a>
                 </li>
@@ -125,16 +140,20 @@ const Footer = () => {
           </p>
 
           {/* Social Links */}
-          <div className="flex items-center gap-4">
-            <a href="#" className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors group">
-              <Linkedin className="w-5 h-5 text-background/60 group-hover:text-primary-foreground" />
-            </a>
-            <a href="#" className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors group">
-              <Instagram className="w-5 h-5 text-background/60 group-hover:text-primary-foreground" />
-            </a>
-            <a href="#" className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors group">
-              <Youtube className="w-5 h-5 text-background/60 group-hover:text-primary-foreground" />
-            </a>
+          <div className="flex items-center gap-3">
+            {[
+              { icon: Linkedin, href: "#" },
+              { icon: Instagram, href: "#" },
+              { icon: Youtube, href: "#" },
+            ].map((social, i) => (
+              <a 
+                key={i}
+                href={social.href} 
+                className="w-10 h-10 rounded-xl bg-background/5 flex items-center justify-center hover:bg-primary hover:scale-110 transition-all duration-300 group"
+              >
+                <social.icon className="w-5 h-5 text-background/60 group-hover:text-primary-foreground transition-colors duration-300" />
+              </a>
+            ))}
           </div>
         </div>
       </div>

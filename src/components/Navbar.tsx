@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, MessageSquare } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,21 +24,26 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-card/90 backdrop-blur-xl shadow-soft py-3"
+          ? "glass-strong py-3"
           : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-              <MessageSquare className="w-5 h-5 text-primary-foreground" />
+          <a href="#" className="flex items-center gap-3 group">
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/30 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <img 
+                src={logo} 
+                alt="AtendeTicket" 
+                className="w-10 h-10 rounded-xl relative z-10 transition-transform duration-300 group-hover:scale-110"
+              />
             </div>
             <span className="font-display font-bold text-xl text-foreground">
-              Atende<span className="text-primary">Ticket</span>
+              Atende<span className="text-gradient">Ticket</span>
             </span>
           </a>
 
@@ -47,26 +53,27 @@ const Navbar = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
+                className="relative text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium group"
               >
                 {link.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary rounded-full transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </div>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" className="hover:bg-primary/10">
               Entrar
             </Button>
-            <Button variant="hero" size="sm">
+            <Button variant="hero" size="sm" className="shadow-glow">
               Começar Grátis
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 rounded-xl glass-subtle"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
@@ -79,25 +86,27 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 animate-slide-up">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="flex flex-col gap-2 pt-4 border-t border-border">
-                <Button variant="ghost" className="w-full">
-                  Entrar
-                </Button>
-                <Button variant="hero" className="w-full">
-                  Começar Grátis
-                </Button>
+          <div className="md:hidden mt-4 pb-4 animate-slide-up-spring">
+            <div className="glass-card rounded-2xl p-4">
+              <div className="flex flex-col gap-2">
+                {navLinks.map((link, index) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className={`text-muted-foreground hover:text-foreground hover:bg-primary/5 transition-all duration-300 font-medium py-3 px-4 rounded-xl animate-fade-in-up opacity-0 stagger-${index + 1}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <div className="flex flex-col gap-2 pt-4 mt-2 border-t border-border/50">
+                  <Button variant="ghost" className="w-full justify-center">
+                    Entrar
+                  </Button>
+                  <Button variant="hero" className="w-full justify-center shadow-glow">
+                    Começar Grátis
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
