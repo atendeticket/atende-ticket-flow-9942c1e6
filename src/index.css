@@ -639,6 +639,79 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+/* ============================================
+   TRUE STICKY SECTION LAYOUT
+   Cards stack on top of each other as you scroll
+   ============================================ */
+
+.sticky-card-stack {
+  position: relative;
+}
+
+.sticky-card-item {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.sticky-card-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Card shadow and depth effect */
+.sticky-card-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--background)) 0%,
+    transparent 100%
+  );
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.sticky-card-item:not(:first-child)::before {
+  opacity: 1;
+}
+
+/* Subtle shadow between sections */
+.sticky-card-item::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    hsl(var(--foreground) / 0.03)
+  );
+  pointer-events: none;
+}
+
+/* First card doesn't need top shadow */
+.sticky-card-item:first-child::after {
+  display: none;
 }
 
 /* ============================================

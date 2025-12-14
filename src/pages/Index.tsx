@@ -8,31 +8,32 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
+const sections = [
+  { id: "hero", Component: HeroSection, bg: "bg-background" },
+  { id: "features", Component: FeaturesSection, bg: "bg-background" },
+  { id: "pricing", Component: PricingSection, bg: "bg-background" },
+  { id: "testimonials", Component: TestimonialsSection, bg: "bg-background" },
+  { id: "cta", Component: CTASection, bg: "bg-background" },
+];
+
 const Index = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const sectionsRef = useRef<HTMLDivElement[]>([]);
+  const [activeSection, setActiveSection] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
+      if (!containerRef.current) return;
+      
+      const scrollTop = window.scrollY;
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
+      const progress = totalHeight > 0 ? (scrollTop / totalHeight) * 100 : 0;
       setScrollProgress(Math.min(100, Math.max(0, progress)));
 
-      // Trigger sticky animations
-      sectionsRef.current.forEach((section, index) => {
-        if (!section) return;
-        const rect = section.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        // Calculate visibility progress
-        const visibilityProgress = 1 - Math.max(0, Math.min(1, rect.top / windowHeight));
-        section.style.setProperty('--visibility-progress', String(visibilityProgress));
-        
-        // Add revealed class when in view
-        if (rect.top < windowHeight * 0.8) {
-          section.classList.add('revealed');
-        }
-      });
+      // Calculate which section is active based on scroll position
+      const sectionHeight = window.innerHeight;
+      const currentSection = Math.floor(scrollTop / sectionHeight);
+      setActiveSection(Math.min(currentSection, sections.length - 1));
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -40,10 +41,6 @@ const Index = () => {
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const addToRefs = (el: HTMLDivElement | null, index: number) => {
-    if (el) sectionsRef.current[index] = el;
-  };
 
   return (
     <>
@@ -58,64 +55,61 @@ const Index = () => {
 
       {/* Scroll Progress Bar */}
       <div 
-        className="scroll-progress-bar"
-        style={{ transform: `scaleX(${scrollProgress / 100})` }}
+        className="scroll-progress-bar fixed top-0 left-0 h-1 z-[9999]"
+        style={{ 
+          transform: `scaleX(${scrollProgress / 100})`,
+          background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(var(--cyan-400)))',
+          transformOrigin: 'left'
+        }}
       />
 
-      <main className="min-h-screen bg-background overflow-x-hidden">
-        <Navbar />
-        
-        {/* Hero - Sticky with Parallax */}
-        <div 
-          ref={(el) => addToRefs(el, 0)}
-          className="sticky-section bg-background text-reveal-stagger"
-          style={{ zIndex: 10 }}
-        >
-          <HeroSection />
+      {/* Section Indicators */}
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-[100] hidden lg:flex flex-col gap-3">
+        {sections.map((section, index) => (
+          <button
+            key={section.id}
+            onClick={() => {
+              window.scrollTo({
+                top: index * window.innerHeight,
+                behavior: 'smooth'
+              });
+            }}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              activeSection === index 
+                ? 'bg-primary scale-125 shadow-glow' 
+                : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+            }`}
+            aria-label={`Ir para seção ${section.id}`}
+          />
+        ))}
+      </div>
+
+      <Navbar />
+
+      <main ref={containerRef} className="relative bg-background">
+        {/* Sticky Sections Container */}
+        <div className="sticky-card-stack">
+          {sections.map((section, index) => {
+            const { Component } = section;
+            return (
+              <div
+                key={section.id}
+                className={`sticky-card-item ${section.bg}`}
+                style={{
+                  zIndex: 10 + index,
+                  '--card-index': index,
+                } as React.CSSProperties}
+              >
+                <div className="sticky-card-content">
+                  <Component />
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Features - Card Stack Effect */}
-        <div 
-          ref={(el) => addToRefs(el, 1)}
-          className="sticky-section bg-background sticky-animate-up"
-          style={{ zIndex: 20 }}
-        >
-          <FeaturesSection />
-        </div>
-
-        {/* Pricing - Scale Animation */}
-        <div 
-          ref={(el) => addToRefs(el, 2)}
-          className="sticky-section bg-background sticky-animate-scale"
-          style={{ zIndex: 30 }}
-        >
-          <PricingSection />
-        </div>
-
-        {/* Testimonials - Rotate Reveal */}
-        <div 
-          ref={(el) => addToRefs(el, 3)}
-          className="sticky-section bg-background sticky-animate-rotate"
-          style={{ zIndex: 40 }}
-        >
-          <TestimonialsSection />
-        </div>
-
-        {/* CTA - Zoom Effect */}
-        <div 
-          ref={(el) => addToRefs(el, 4)}
-          className="sticky-section bg-background sticky-animate-zoom"
-          style={{ zIndex: 50 }}
-        >
-          <CTASection />
-        </div>
-
-        {/* Footer */}
-        <div 
-          ref={(el) => addToRefs(el, 5)}
-          className="relative bg-background"
-          style={{ zIndex: 60 }}
-        >
+        {/* Footer - Not sticky */}
+        <div className="relative" style={{ zIndex: 60 }}>
           <Footer />
         </div>
       </main>
