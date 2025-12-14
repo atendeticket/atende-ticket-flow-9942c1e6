@@ -1,26 +1,51 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, MessageCircle, Users, Zap, CheckCircle, Sparkles } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { ParallaxElement } from "@/components/ParallaxElement";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen pt-24 pb-16 overflow-hidden">
+    <section className="relative min-h-screen pt-24 pb-16 overflow-hidden flex items-center">
       {/* Mesh gradient background */}
       <div className="absolute inset-0 bg-gradient-mesh" />
       
-      {/* Animated background decorations */}
+      {/* Parallax background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Main glow */}
-        <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] animate-pulse-glow" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-300/30 rounded-full blur-[100px] animate-pulse-glow stagger-3" />
+        {/* Main glow - Parallax slower */}
+        <ParallaxElement speed={-0.3} className="absolute top-20 left-1/4">
+          <div className="w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] animate-pulse-glow" />
+        </ParallaxElement>
         
-        {/* Floating orbs */}
-        <div className="absolute top-1/4 right-1/4 w-4 h-4 bg-primary/60 rounded-full animate-float blur-sm" />
-        <div className="absolute top-1/3 left-1/3 w-3 h-3 bg-cyan-400/50 rounded-full animate-float-slow stagger-2" />
-        <div className="absolute bottom-1/3 right-1/3 w-5 h-5 bg-primary/40 rounded-full animate-float-delayed" />
+        <ParallaxElement speed={-0.5} className="absolute bottom-0 right-1/4">
+          <div className="w-[500px] h-[500px] bg-cyan-300/30 rounded-full blur-[100px] animate-pulse-glow stagger-3" />
+        </ParallaxElement>
         
-        {/* Morphing shape */}
-        <div className="absolute top-1/2 left-10 w-64 h-64 bg-gradient-to-br from-primary/10 to-cyan-300/10 animate-morph" />
+        {/* Floating orbs - Different speeds */}
+        <ParallaxElement speed={0.8} className="absolute top-1/4 right-1/4">
+          <div className="w-4 h-4 bg-primary/60 rounded-full animate-float blur-sm" />
+        </ParallaxElement>
+        
+        <ParallaxElement speed={0.5} className="absolute top-1/3 left-1/3">
+          <div className="w-3 h-3 bg-cyan-400/50 rounded-full animate-float-slow stagger-2" />
+        </ParallaxElement>
+        
+        <ParallaxElement speed={0.6} className="absolute bottom-1/3 right-1/3">
+          <div className="w-5 h-5 bg-primary/40 rounded-full animate-float-delayed" />
+        </ParallaxElement>
+        
+        {/* Morphing shape - Slow parallax */}
+        <ParallaxElement speed={-0.2} className="absolute top-1/2 left-10">
+          <div className="w-64 h-64 bg-gradient-to-br from-primary/10 to-cyan-300/10 animate-morph" />
+        </ParallaxElement>
+
+        {/* Extra decorative elements */}
+        <ParallaxElement speed={1} direction="right" className="absolute top-20 right-20">
+          <div className="w-32 h-32 border border-primary/20 rounded-full animate-rotate-slow" />
+        </ParallaxElement>
+        
+        <ParallaxElement speed={0.4} className="absolute bottom-20 left-20">
+          <div className="w-20 h-20 bg-gradient-to-br from-cyan-400/20 to-primary/20 rounded-2xl rotate-45 animate-float" />
+        </ParallaxElement>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -86,8 +111,8 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Content - Dashboard Preview */}
-          <div className="flex-1 relative animate-blur-in opacity-0 stagger-3">
+          {/* Right Content - Dashboard Preview with Parallax */}
+          <ParallaxElement speed={0.15} className="flex-1 relative animate-blur-in opacity-0 stagger-3">
             {/* Glow behind dashboard */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-cyan-300/30 rounded-3xl blur-3xl transform rotate-3 animate-pulse-glow" />
             
@@ -162,9 +187,9 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* Floating Cards */}
-            <div className="absolute -left-8 top-1/4 animate-float">
-              <div className="glass-card p-4 rounded-2xl shadow-glow">
+            {/* Floating Cards with independent parallax */}
+            <ParallaxElement speed={0.4} className="absolute -left-8 top-1/4">
+              <div className="glass-card p-4 rounded-2xl shadow-glow animate-float">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500/20 to-green-400/10 flex items-center justify-center">
                     <Users className="w-5 h-5 text-green-500" />
@@ -175,10 +200,10 @@ const HeroSection = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </ParallaxElement>
 
-            <div className="absolute -right-4 bottom-1/4 animate-float-delayed">
-              <div className="glass-card p-4 rounded-2xl shadow-glow">
+            <ParallaxElement speed={0.6} className="absolute -right-4 bottom-1/4">
+              <div className="glass-card p-4 rounded-2xl shadow-glow animate-float-delayed">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-cyan-300/10 flex items-center justify-center animate-pulse-ring">
                     <Zap className="w-5 h-5 text-primary" />
@@ -189,8 +214,8 @@ const HeroSection = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </ParallaxElement>
+          </ParallaxElement>
         </div>
       </div>
 

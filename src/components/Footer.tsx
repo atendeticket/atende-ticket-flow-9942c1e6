@@ -1,6 +1,7 @@
 import { Mail, Phone, MapPin, Linkedin, Instagram, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
+import { ParallaxElement } from "@/components/ParallaxElement";
 
 const Footer = () => {
   const footerLinks = {
@@ -31,15 +32,21 @@ const Footer = () => {
   };
 
   return (
-    <footer id="contato" className="bg-foreground text-background py-16 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+    <div id="contato" className="bg-foreground text-background py-16 relative overflow-hidden">
+      {/* Background decoration with parallax */}
+      <ParallaxElement speed={-0.2} className="absolute top-0 right-0">
+        <div className="w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      </ParallaxElement>
+      
+      <ParallaxElement speed={-0.3} className="absolute bottom-0 left-0">
+        <div className="w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl" />
+      </ParallaxElement>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
           {/* Brand Column */}
           <div className="col-span-2">
-            <a href="#" className="flex items-center gap-3 mb-4 group">
+            <Link to="/" className="flex items-center gap-3 mb-4 group">
               <div className="relative">
                 <div className="absolute inset-0 bg-primary/30 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <img 
@@ -51,7 +58,7 @@ const Footer = () => {
               <span className="font-display font-bold text-xl text-background">
                 Atende<span className="text-primary">Ticket</span>
               </span>
-            </a>
+            </Link>
             <p className="text-background/60 text-sm mb-6 max-w-xs leading-relaxed">
               Plataforma de multiatendimento que centraliza todos os seus canais 
               em um único lugar. Simples, rápido e eficiente.
@@ -158,7 +165,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   );
 };
 
