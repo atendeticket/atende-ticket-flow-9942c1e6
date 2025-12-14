@@ -13,7 +13,7 @@ const sections = [
   { id: "features", Component: FeaturesSection, bg: "bg-background" },
   { id: "pricing", Component: PricingSection, bg: "bg-background" },
   { id: "testimonials", Component: TestimonialsSection, bg: "bg-background" },
-  { id: "cta", Component: CTASection, bg: "bg-background" },
+  { id: "cta", Component: CTASection, bg: "bg-transparent" },
 ];
 
 const Index = () => {
@@ -108,10 +108,10 @@ const Index = () => {
           })}
         </div>
 
-        {/* Footer - Not sticky */}
-        <div className="relative" style={{ zIndex: 60 }}>
+        {/* Footer - Separate from sticky sections */}
+        <footer className="relative bg-foreground" style={{ zIndex: 100 }}>
           <Footer />
-        </div>
+        </footer>
       </main>
     </>
   );
