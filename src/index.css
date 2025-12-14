@@ -640,3 +640,345 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* ============================================
+   STICKY SECTION LAYOUT ANIMATIONS
+   ============================================ */
+
+/* Main sticky section container */
+.sticky-section {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 0.1s ease-out;
+}
+
+.sticky-content {
+  width: 100%;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+/* Sticky section with card stack effect */
+.sticky-stack {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+.sticky-stack-item {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Horizontal scroll within sticky */
+.sticky-horizontal {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.sticky-horizontal-track {
+  display: flex;
+  gap: 2rem;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* Reveal animations for sticky sections */
+@keyframes sticky-reveal-up {
+  0% {
+    opacity: 0;
+    transform: translateY(100px) scale(0.9);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes sticky-reveal-scale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sticky-reveal-rotate {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(20deg) translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0deg) translateY(0);
+  }
+}
+
+@keyframes sticky-fade-slide {
+  0% {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sticky-zoom {
+  0% {
+    opacity: 0;
+    transform: scale(1.2);
+    filter: blur(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes sticky-slide-mask {
+  0% {
+    clip-path: inset(100% 0 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Animation classes for sticky sections */
+.sticky-animate-up {
+  animation: sticky-reveal-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+.sticky-animate-scale {
+  animation: sticky-reveal-scale 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 35%;
+}
+
+.sticky-animate-rotate {
+  animation: sticky-reveal-rotate 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+.sticky-animate-fade {
+  animation: sticky-fade-slide 1s ease-out forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+.sticky-animate-zoom {
+  animation: sticky-zoom 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 35%;
+}
+
+.sticky-animate-mask {
+  animation: sticky-slide-mask 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 45%;
+}
+
+/* Parallax depth layers for sticky */
+.sticky-parallax-back {
+  transform: translateZ(-2px) scale(3);
+}
+
+.sticky-parallax-mid {
+  transform: translateZ(-1px) scale(2);
+}
+
+.sticky-parallax-front {
+  transform: translateZ(0);
+}
+
+/* Card stack effect */
+.sticky-card-stack {
+  position: relative;
+  min-height: 300vh;
+}
+
+.sticky-card {
+  position: sticky;
+  top: 10vh;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: var(--radius);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s ease-out;
+}
+
+.sticky-card:nth-child(1) {
+  z-index: 1;
+}
+
+.sticky-card:nth-child(2) {
+  z-index: 2;
+  margin-top: 5vh;
+}
+
+.sticky-card:nth-child(3) {
+  z-index: 3;
+  margin-top: 10vh;
+}
+
+.sticky-card:nth-child(4) {
+  z-index: 4;
+  margin-top: 15vh;
+}
+
+/* Pin and reveal effect */
+.sticky-pin-container {
+  position: relative;
+  height: 200vh;
+}
+
+.sticky-pin-content {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sticky-reveal-left {
+  clip-path: polygon(0 0, var(--reveal-progress, 0%) 0, var(--reveal-progress, 0%) 100%, 0 100%);
+  transition: clip-path 0.1s ease-out;
+}
+
+.sticky-reveal-right {
+  clip-path: polygon(calc(100% - var(--reveal-progress, 0%)) 0, 100% 0, 100% 100%, calc(100% - var(--reveal-progress, 0%)) 100%);
+  transition: clip-path 0.1s ease-out;
+}
+
+/* Scroll progress indicator */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--cyan-400)));
+  transform-origin: left;
+  z-index: 9999;
+  transition: transform 0.1s ease-out;
+}
+
+/* Enhanced section transitions */
+.section-transition {
+  position: relative;
+}
+
+.section-transition::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, hsl(var(--background)));
+  pointer-events: none;
+  z-index: 5;
+}
+
+.section-transition::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to top, transparent, hsl(var(--background)));
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Floating elements that respond to scroll */
+.scroll-float {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-float[data-direction="up"] {
+  transform: translateY(calc(var(--scroll-offset, 0) * -1px));
+}
+
+.scroll-float[data-direction="down"] {
+  transform: translateY(calc(var(--scroll-offset, 0) * 1px));
+}
+
+.scroll-float[data-direction="left"] {
+  transform: translateX(calc(var(--scroll-offset, 0) * -1px));
+}
+
+.scroll-float[data-direction="right"] {
+  transform: translateX(calc(var(--scroll-offset, 0) * 1px));
+}
+
+/* Text reveal on scroll */
+.text-reveal-container {
+  overflow: hidden;
+}
+
+.text-reveal {
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.8s ease-out;
+}
+
+.text-reveal.revealed {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Staggered text reveal */
+.text-reveal-stagger > * {
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s ease-out;
+}
+
+.text-reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0s; }
+.text-reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.1s; }
+.text-reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.2s; }
+.text-reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.3s; }
+.text-reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.4s; }
+
+.text-reveal-stagger.revealed > * {
+  transform: translateY(0);
+  opacity: 1;
+}
