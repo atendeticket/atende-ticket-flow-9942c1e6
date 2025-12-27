@@ -63,12 +63,11 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="ghost" size="sm" className="hover:bg-primary/10">
-              Entrar
-            </Button>
-            <Button variant="hero" size="sm" className="shadow-glow">
-              Começar Grátis
-            </Button>
+            <a href="https://pay.kiwify.com.br/jMab2jA" target="_blank" rel="noopener noreferrer">
+              <Button variant="hero" size="sm" className="shadow-glow">
+                Começar Agora
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -100,12 +99,11 @@ const Navbar = () => {
                   </a>
                 ))}
                 <div className="flex flex-col gap-2 pt-4 mt-2 border-t border-border/50">
-                  <Button variant="ghost" className="w-full justify-center">
-                    Entrar
-                  </Button>
-                  <Button variant="hero" className="w-full justify-center shadow-glow">
-                    Começar Grátis
-                  </Button>
+                  <a href="https://pay.kiwify.com.br/jMab2jA" target="_blank" rel="noopener noreferrer" className="w-full">
+                    <Button variant="hero" className="w-full justify-center shadow-glow">
+                      Começar Agora
+                    </Button>
+                  </a>
                 </div>
               </div>
             </div>
