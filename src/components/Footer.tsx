@@ -1,7 +1,6 @@
 import { Mail, Phone, MapPin, Linkedin, Instagram, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
-import { ParallaxElement } from "@/components/ParallaxElement";
 
 const Footer = () => {
   const footerLinks = {
@@ -32,15 +31,10 @@ const Footer = () => {
   };
 
   return (
-    <div id="contato" className="bg-foreground text-background py-16 relative overflow-hidden">
-      {/* Background decoration with parallax */}
-      <ParallaxElement speed={-0.2} className="absolute top-0 right-0">
-        <div className="w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      </ParallaxElement>
-      
-      <ParallaxElement speed={-0.3} className="absolute bottom-0 left-0">
-        <div className="w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl" />
-      </ParallaxElement>
+    <footer id="contato" className="bg-foreground text-background py-16 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
@@ -165,7 +159,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 
