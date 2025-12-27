@@ -39,8 +39,8 @@ const PricingSection = () => {
         </div>
 
         {/* Single Lifetime Plan Card */}
-        <div className="max-w-lg mx-auto">
-          <div className="relative p-8 rounded-3xl glass-strong border-2 border-primary/50 shadow-glow-lg">
+        <div className="max-w-lg mx-auto perspective-1000">
+          <div className="relative p-8 rounded-3xl glass-strong border-2 border-primary/50 shadow-glow-lg transform-gpu transition-all duration-500 hover:rotate-y-3 hover:rotate-x-3 hover:scale-105 card-3d">
             {/* Gradient background */}
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/20 to-cyan-300/20 opacity-50" />
             
@@ -85,33 +85,26 @@ const PricingSection = () => {
                 ))}
               </ul>
 
-              <Button
-                variant="hero"
-                className="w-full shadow-glow"
-                size="lg"
+              <a
+                href="https://pay.kiwify.com.br/jMab2jA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full"
               >
-                <Zap className="w-4 h-4" />
-                Garantir Meu Acesso
-              </Button>
+                <Button
+                  variant="hero"
+                  className="w-full shadow-glow"
+                  size="lg"
+                >
+                  <Zap className="w-4 h-4" />
+                  Garantir Meu Acesso
+                </Button>
+              </a>
 
               <p className="text-xs text-muted-foreground text-center mt-4">
                 Garantia de 7 dias ou seu dinheiro de volta
               </p>
             </div>
-          </div>
-        </div>
-
-        {/* Payment Methods */}
-        <div className="mt-16 text-center">
-          <p className="text-sm text-muted-foreground mb-4">
-            Pagamento seguro via <span className="text-primary font-semibold">Mercado Pago</span>
-          </p>
-          <div className="flex items-center justify-center gap-4">
-            {["Visa", "Master", "Pix", "Boleto"].map((method) => (
-              <div key={method} className="glass-subtle px-4 py-2 rounded-lg">
-                <span className="text-xs font-medium text-muted-foreground">{method}</span>
-              </div>
-            ))}
           </div>
         </div>
       </div>
