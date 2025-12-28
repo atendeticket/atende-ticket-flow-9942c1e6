@@ -10,9 +10,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Youtube, href: "#", label: "YouTube" },
+    { icon: Instagram, href: "https://instagram.com/atendeticket", label: "Instagram" },
+    { icon: Github, href: "https://github.com/atendeticket", label: "GitHub" },
+    { icon: Youtube, href: "https://www.youtube.com/@atendeticket", label: "YouTube" },
   ];
 
   return (
