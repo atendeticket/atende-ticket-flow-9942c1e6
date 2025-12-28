@@ -50,8 +50,8 @@ const HeroSection = () => {
 
             {/* Subheading */}
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 animate-fade-in-up opacity-0 stagger-2">
-              Centralize WhatsApp, Instagram, Facebook e e-mail em um único painel. 
-              Aumente a produtividade da sua equipe e encante seus clientes.
+              Centralize todos os seus atendimentos do WhatsApp em um único painel. 
+              Múltiplos atendentes, chatbot inteligente e relatórios em tempo real.
             </p>
 
             {/* Features list */}
