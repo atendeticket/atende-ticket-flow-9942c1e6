@@ -1,4 +1,4 @@
-import { Phone, Instagram, Youtube, Github } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Youtube, Github } from "lucide-react";
 import logo from "@/assets/atendeticket-logo.png";
 
 const Footer = () => {
@@ -22,7 +22,7 @@ const Footer = () => {
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 mb-8">
           {/* Logo */}
           <a href="#" className="flex items-center group">
             <img 
@@ -45,14 +45,27 @@ const Footer = () => {
             ))}
           </nav>
 
-          {/* Phone */}
-          <a 
-            href="tel:+5511999999999" 
-            className="flex items-center gap-2 text-sm text-background/70 hover:text-primary transition-colors duration-300"
-          >
-            <Phone className="w-4 h-4" />
-            (11) 99999-9999
-          </a>
+          {/* Contact Info */}
+          <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-background/70">
+            <a 
+              href="mailto:contato@atendeticket.com" 
+              className="flex items-center gap-2 hover:text-primary transition-colors duration-300"
+            >
+              <Mail className="w-4 h-4" />
+              contato@atendeticket.com
+            </a>
+            <a 
+              href="tel:+5519995828860" 
+              className="flex items-center gap-2 hover:text-primary transition-colors duration-300"
+            >
+              <Phone className="w-4 h-4" />
+              (19) 99582-8860
+            </a>
+            <span className="flex items-center gap-2">
+              <MapPin className="w-4 h-4" />
+              São Paulo, Brasil
+            </span>
+          </div>
         </div>
 
         {/* Bottom Bar */}
