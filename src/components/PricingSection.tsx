@@ -86,7 +86,7 @@ const PricingSection = () => {
               </ul>
 
               <a
-                href="https://pay.kiwify.com.br/jMab2jA"
+                href="https://pay.kiwify.com.br/UcJKaJp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full"

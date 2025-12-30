@@ -57,7 +57,7 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <a href="https://pay.kiwify.com.br/jMab2jA" target="_blank" rel="noopener noreferrer">
+            <a href="https://pay.kiwify.com.br/UcJKaJp" target="_blank" rel="noopener noreferrer">
               <Button variant="hero" size="sm" className="shadow-glow">
                 Começar Agora
               </Button>
@@ -93,7 +93,7 @@ const Navbar = () => {
                   </a>
                 ))}
                 <div className="flex flex-col gap-2 pt-4 mt-2 border-t border-border/50">
-                  <a href="https://pay.kiwify.com.br/jMab2jA" target="_blank" rel="noopener noreferrer" className="w-full">
+                  <a href="https://pay.kiwify.com.br/UcJKaJp" target="_blank" rel="noopener noreferrer" className="w-full">
                     <Button variant="hero" className="w-full justify-center shadow-glow">
                       Começar Agora
                     </Button>
