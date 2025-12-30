@@ -19,7 +19,7 @@ const Navbar = () => {
     { href: "#recursos", label: "Recursos" },
     { href: "#precos", label: "Preços" },
     { href: "#depoimentos", label: "Depoimentos" },
-    { href: "#contato", label: "Contato" },
+    { href: "https://wa.me/5519995828860", label: "Contato", external: true },
   ];
 
   return (
@@ -47,6 +47,8 @@ const Navbar = () => {
               <a
                 key={link.href}
                 href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
                 className="relative text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium group"
               >
                 {link.label}
@@ -86,6 +88,8 @@ const Navbar = () => {
                   <a
                     key={link.href}
                     href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
                     className={`text-muted-foreground hover:text-foreground hover:bg-primary/5 transition-all duration-300 font-medium py-3 px-4 rounded-xl animate-fade-in-up opacity-0 stagger-${index + 1}`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
