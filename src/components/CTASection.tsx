@@ -63,19 +63,23 @@ const CTASection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <Button
-              size="xl"
-              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 hover:-translate-y-1 transition-all duration-300 shadow-xl hover:shadow-2xl group"
-            >
-              <span className="relative z-10">Começar Teste Grátis</span>
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button
-              size="xl"
-              className="border-2 border-primary-foreground/30 bg-primary-foreground/10 backdrop-blur-xl text-primary-foreground hover:bg-primary-foreground/20 hover:-translate-y-1 transition-all duration-300"
-            >
-              Falar com Consultor
-            </Button>
+            <a href="https://painel.atendeticket.com" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+              <Button
+                size="xl"
+                className="w-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 hover:-translate-y-1 transition-all duration-300 shadow-xl hover:shadow-2xl group"
+              >
+                <span className="relative z-10">Começar Teste Grátis</span>
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </a>
+            <a href="https://wa.me/5519995828860" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+              <Button
+                size="xl"
+                className="w-full border-2 border-primary-foreground/30 bg-primary-foreground/10 backdrop-blur-xl text-primary-foreground hover:bg-primary-foreground/20 hover:-translate-y-1 transition-all duration-300"
+              >
+                Falar com Consultor
+              </Button>
+            </a>
           </div>
 
           {/* Trust indicators */}

@@ -66,15 +66,19 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-slide-up-spring opacity-0 stagger-4">
-              <Button variant="hero" size="xl" className="group shadow-glow-lg">
-                <span className="relative z-10">Teste Grátis por 7 Dias</span>
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-              </Button>
-              <Button variant="glass" size="xl" className="group">
-                <Play className="w-5 h-5 text-primary" />
-                Ver Demo
-              </Button>
+              <a href="https://painel.atendeticket.com" target="_blank" rel="noopener noreferrer">
+                <Button variant="hero" size="xl" className="group shadow-glow-lg w-full sm:w-auto">
+                  <span className="relative z-10">Começar Teste Grátis</span>
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                </Button>
+              </a>
+              <a href="https://wa.me/5519995828860" target="_blank" rel="noopener noreferrer">
+                <Button variant="glass" size="xl" className="group w-full sm:w-auto">
+                  <Play className="w-5 h-5 text-primary" />
+                  Falar com Consultor
+                </Button>
+              </a>
             </div>
 
             {/* Trust badges */}
