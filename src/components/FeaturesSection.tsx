@@ -152,7 +152,9 @@ const FeaturesSection = () => {
                   {feature.description}
                 </p>
                 <a
-                  href="#"
+                  href="https://pay.kiwify.com.br/UcJKaJp"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-primary text-sm font-medium opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
                 >
                   Saiba mais

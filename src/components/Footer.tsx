@@ -6,7 +6,7 @@ const Footer = () => {
     { label: "Recursos", href: "#recursos" },
     { label: "Preços", href: "#precos" },
     { label: "Depoimentos", href: "#depoimentos" },
-    { label: "Contato", href: "#contato" },
+    { label: "Contato", href: "https://wa.me/5519995828860", external: true },
   ];
 
   const socialLinks = [
@@ -38,6 +38,8 @@ const Footer = () => {
               <a
                 key={link.label}
                 href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
                 className="text-sm text-background/70 hover:text-primary transition-colors duration-300"
               >
                 {link.label}
