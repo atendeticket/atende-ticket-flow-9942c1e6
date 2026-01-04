@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 
 const testimonials = [
@@ -88,24 +89,41 @@ const TestimonialsSection = () => {
   return (
     <section id="depoimentos" className="py-24 bg-background overflow-hidden relative">
       {/* Background decorations */}
-      <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-cyan-300/10 rounded-full blur-3xl" />
+      <motion.div 
+        className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 8, repeat: Infinity }}
+      />
+      <motion.div 
+        className="absolute bottom-0 right-1/4 w-80 h-80 bg-cyan-300/10 rounded-full blur-3xl"
+        animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.4, 0.2] }}
+        transition={{ duration: 6, repeat: Infinity, delay: 1 }}
+      />
 
       <div className="container mx-auto px-4 mb-12 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm font-medium mb-6">
+        <motion.div 
+          className="text-center max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.span 
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full liquid-glass-card text-sm font-medium mb-6"
+            whileHover={{ scale: 1.05 }}
+          >
             <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-            <span className="text-foreground">Histórias de Sucesso</span>
-          </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            <span className="text-foreground tracking-tight">Histórias de Sucesso</span>
+          </motion.span>
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 tracking-tight">
             O que nossos{" "}
             <span className="gradient-text-animated">clientes dizem</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground tracking-tight">
             Mais de 5.000 empresas confiam na AtendeTicket para transformar seu atendimento.
           </p>
-        </div>
+        </motion.div>
       </div>
 
       {/* Testimonials Carousel */}
@@ -116,47 +134,60 @@ const TestimonialsSection = () => {
         onMouseLeave={() => setIsPaused(false)}
       >
         {[...testimonials, ...testimonials].map((testimonial, index) => (
-          <div
+          <motion.div
             key={index}
-            className="flex-shrink-0 w-[400px] p-6 rounded-2xl glass-card interactive-card group"
+            className="flex-shrink-0 w-[400px] p-6 rounded-2xl liquid-glass-card group"
+            whileHover={{ y: -8, scale: 1.02 }}
+            transition={{ duration: 0.3 }}
           >
             {/* Gradient overlay */}
             <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${testimonial.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
             
             <div className="relative z-10">
               {/* Quote icon */}
-              <div className="w-12 h-12 rounded-xl glass-subtle flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors duration-300">
+              <motion.div 
+                className="w-12 h-12 rounded-xl liquid-glass-btn flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors duration-300"
+                whileHover={{ rotate: 10, scale: 1.1 }}
+              >
                 <Quote className="w-6 h-6 text-primary" />
-              </div>
+              </motion.div>
 
               {/* Content */}
-              <p className="text-foreground mb-6 leading-relaxed">
+              <p className="text-foreground mb-6 leading-relaxed tracking-tight">
                 "{testimonial.content}"
               </p>
 
               {/* Rating */}
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star 
-                    key={i} 
-                    className="w-4 h-4 fill-yellow-400 text-yellow-400 transition-transform duration-300" 
-                    style={{ transitionDelay: `${i * 50}ms` }}
-                  />
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <Star 
+                      className="w-4 h-4 fill-yellow-400 text-yellow-400" 
+                    />
+                  </motion.div>
                 ))}
               </div>
 
               {/* Author */}
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-cyan-300/30 flex items-center justify-center group-hover:shadow-glow transition-shadow duration-300">
-                  <span className="font-semibold text-primary">{testimonial.avatar}</span>
-                </div>
+                <motion.div 
+                  className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-cyan-300/30 flex items-center justify-center group-hover:shadow-glow transition-shadow duration-300"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <span className="font-semibold text-primary tracking-tight">{testimonial.avatar}</span>
+                </motion.div>
                 <div>
-                  <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{testimonial.name}</h4>
-                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                  <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 tracking-tight">{testimonial.name}</h4>
+                  <p className="text-sm text-muted-foreground tracking-tight">{testimonial.role}</p>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
